@@ -1,4 +1,5 @@
 import { StepsProps } from "antd";
+
 import * as S from "./styles";
 
 export interface StepsCommonProps extends StepsProps {

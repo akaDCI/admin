@@ -5,6 +5,12 @@ import { StepsCommonProps } from ".";
 export const StepsCommon = styled(Steps)<StepsCommonProps>`
   .ant-steps-item-content {
     width: 200px !important;
+
+    transition: all 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .ant-steps-item-icon {

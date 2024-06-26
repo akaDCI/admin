@@ -8,6 +8,7 @@ import GlobalStyle from "./style/global";
 import { App, ConfigProvider } from "antd";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { EdgeStoreProvider } from "./components/libs/edgestore";
 
 function Providers({
   children,

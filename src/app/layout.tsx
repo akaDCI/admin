@@ -6,6 +6,7 @@ import Providers from "@/providers";
 const inter = Inter({ subsets: ["latin"] });
 
 import "./globals.css";
+import { EdgeStoreProvider } from "@/components/libs/edgestore";
 
 export const metadata: Metadata = {
   title: "akaDCI",
@@ -18,10 +19,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("🚀 ~ !!!!:", process.env.EDGE_STORE_ACCESS_KEY);
+  console.log("🚀 ~ !!!!:", process.env.EDGE_STORE_SECRET_KEY);
   return (
     <html>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <EdgeStoreProvider>{children}</EdgeStoreProvider>
+        </Providers>
       </body>
     </html>
   );
