@@ -23,6 +23,7 @@ function GenerateModel() {
   const router = useRouter();
 
   const currentStep = Number(searchParams.get("currentStep")) || 0;
+  const runMode = searchParams.get("runMode") || "demo";
 
   const items = [
     {
@@ -68,10 +69,18 @@ function GenerateModel() {
     router.push(`${createQueryString("currentStep", `${current}`)}`);
   };
 
+  const switchMode = () => {
+    router.push(
+      `${createQueryString("runMode", runMode === "demo" ? "real" : "demo")}`
+    );
+  };
+
   return (
     <S.PageWrapper>
       <S.Head>
-        <Typography.Title level={2}>Phục hồi cổ vật</Typography.Title>
+        <Typography.Title level={2} onClick={switchMode}>
+          Phục hồi cổ vật
+        </Typography.Title>
         <Button danger icon={<RollbackOutlined />}>
           Bắt đầu lại tiến trình
         </Button>

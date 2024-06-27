@@ -44,7 +44,7 @@ function SignInModule() {
   return (
     <S.Wrapper>
       <Flex justify="space-between">
-        <Image alt="" src={"/icons/layout/logo.svg"} width={40} height={40} />
+        <Image alt="" src={"/icons/layout/logo.jpeg"} width={40} height={40} />
         {/* <SelectLanguage /> */}
       </Flex>
       <Typography.Title

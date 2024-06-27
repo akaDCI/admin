@@ -18,12 +18,13 @@ function UploadStep() {
 
   const searchParams = useSearchParams();
 
+  const currentStep = Number(searchParams.get("currentStep")) || 0;
+  const dataType = searchParams.get("dataType") || "video";
+  const runMode = searchParams.get("runMode") || "demo";
+
   const [fileStates, setFileStates] = useState<FileState[]>([]);
   const [fileVideo, setFileVideo] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const currentStep = Number(searchParams.get("currentStep")) || 0;
-  const dataType = searchParams.get("dataType") || "";
 
   const handleNext = _.debounce(() => {
     setIsLoading(true);
@@ -42,7 +43,7 @@ function UploadStep() {
   }, 300);
 
   return (
-    <div className="mt-10">
+    <div className="my-5">
       <Flex gap={8} align="center" className="mb-5">
         <Typography.Title level={5}>Chọn loại dữ liệu: </Typography.Title>
         <Select
@@ -57,7 +58,7 @@ function UploadStep() {
               value: "video",
             },
           ]}
-          defaultValue={dataType || "image"}
+          defaultValue={dataType || "video"}
           className="w-[100px]"
           onChange={handleChangeDataType}
         />
@@ -67,14 +68,14 @@ function UploadStep() {
       ) : (
         <ImageUpload fileStates={fileStates} setFileStates={setFileStates} />
       )}
-      <Flex justify="center" gap={20} className="mt-10">
+      <Flex justify="center" gap={20} className="my-5">
         <Button onClick={handleBack} disabled={currentStep === 0}>
           Quay lại
         </Button>
         <Button
           type="primary"
           onClick={handleNext}
-          disabled={fileStates.length === 0 && !fileVideo}
+          disabled={fileStates.length === 0 && !fileVideo && runMode !== "demo"}
           loading={isLoading}
         >
           Tiếp tục

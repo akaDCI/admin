@@ -4,17 +4,26 @@ import Typography from "@/components/core/common/Typography";
 import { useRouter } from "next-nprogress-bar";
 import { useSearchParams } from "next/navigation";
 import { createQueryString } from "@/utils/queryString";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
+import { KEYFRAMES } from "@/helpers/data/keyframes";
 
 function KeyFrameStep() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const currentStep = Number(searchParams.get("currentStep")) || 0;
+  const runMode = searchParams.get("runMode") || "demo";
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState(runMode === "demo" ? KEYFRAMES : []);
+
+  useEffect(() => {
+    if (runMode !== "demo") {
+      setData([]);
+    }
+  }, [runMode]);
 
   const handleNext = _.debounce(() => {
     setIsLoading(true);
@@ -29,25 +38,21 @@ function KeyFrameStep() {
   }, 300);
 
   return (
-    <div className="mt-10">
+    <div className="my-5">
       <Flex gap={8} align="center" className="mb-5">
         <Typography.Title level={5}>
-          Danh sách hình ảnh đã chọn lọc và tăng cường:
+          Danh sách hình ảnh đã chọn lọc và tăng cường ({data?.length} hình
+          ảnh):
         </Typography.Title>
       </Flex>
       <Row gutter={[16, 16]}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
+        {data.map((item, index) => (
           <Col key={index} span={6}>
-            <Image
-              src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-              alt="image"
-              width="100%"
-              height={200}
-            />
+            <Image src={item.src} alt={item.alt} width="100%" />
           </Col>
         ))}
       </Row>
-      <Flex justify="center" gap={20} className="mt-10">
+      <Flex justify="center" gap={20} className="my-5">
         <Button onClick={handleBack} disabled={currentStep === 0}>
           Quay lại
         </Button>

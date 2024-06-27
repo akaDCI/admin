@@ -11,7 +11,7 @@ import { EdgeStoreProvider } from "@/components/libs/edgestore";
 export const metadata: Metadata = {
   title: "akaDCI",
   description: "Trang quản trị akaDCI",
-  icons: "/icons/layout/logo.svg",
+  icons: "/icons/layout/logo.jpeg",
 };
 
 export default async function RootLayout({

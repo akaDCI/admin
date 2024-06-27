@@ -79,7 +79,7 @@ const MainLayout = ({
                   <Flex align="center" gap={12}>
                     <Image
                       alt=""
-                      src={"/icons/layout/logo.svg"}
+                      src={"/icons/layout/logo.jpeg"}
                       width={40}
                       height={40}
                     />

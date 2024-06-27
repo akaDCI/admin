@@ -4,17 +4,26 @@ import Typography from "@/components/core/common/Typography";
 import { useRouter } from "next-nprogress-bar";
 import { useSearchParams } from "next/navigation";
 import { createQueryString } from "@/utils/queryString";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import _ from "lodash";
+import { CRACK_DETECTIONS } from "@/helpers/data/crackDetection";
 
 function CrackDetectionStep() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const currentStep = Number(searchParams.get("currentStep")) || 0;
+  const runMode = searchParams.get("runMode") || "demo";
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState(runMode === "demo" ? CRACK_DETECTIONS : []);
+
+  useEffect(() => {
+    if (runMode !== "demo") {
+      setData([]);
+    }
+  }, [runMode]);
 
   const handleNext = _.debounce(() => {
     setIsLoading(true);
@@ -29,23 +38,22 @@ function CrackDetectionStep() {
   }, 300);
 
   return (
-    <div className="mt-10">
+    <div className="my-5">
       <Flex gap={8} align="center" className="mb-5">
-        <Typography.Title level={5}>Nhận diện vết nứt cổ vật:</Typography.Title>
+        <Typography.Title level={5}>
+          Nhận diện vết nứt cổ vật ({data?.length} hình ảnh):
+        </Typography.Title>
       </Flex>
-      <Row gutter={[16, 16]}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => (
-          <Col key={index} span={6}>
-            <Image
-              src="https://cdn.pixabay.com/photo/2017/03/17/21/32/shell-2152731_1280.jpg"
-              alt="image"
-              width="100%"
-              height={200}
-            />
-          </Col>
-        ))}
-      </Row>
-      <Flex justify="center" gap={20} className="mt-10">
+      <div className="min-h-[300px]">
+        <Row gutter={[16, 16]}>
+          {data.map((item, index) => (
+            <Col key={index} span={6}>
+              <Image src={item.src} alt={item.alt} width="100%" />
+            </Col>
+          ))}
+        </Row>
+      </div>
+      <Flex justify="center" gap={20} className="my-5">
         <Button onClick={handleBack} disabled={currentStep === 0}>
           Quay lại
         </Button>

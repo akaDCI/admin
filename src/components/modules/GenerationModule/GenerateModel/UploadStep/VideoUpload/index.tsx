@@ -4,6 +4,7 @@ import _ from "lodash";
 import { Upload, UploadProps } from "antd";
 import { Dispatch, SetStateAction } from "react";
 import { InboxOutlined, CloseOutlined } from "@ant-design/icons";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   fileVideo: File | null;
@@ -11,6 +12,9 @@ interface Props {
 }
 
 function VideoUpload({ fileVideo, setFileVideo }: Props) {
+  const searchParams = useSearchParams();
+  const runMode = searchParams.get("runMode") || "demo";
+
   const options: UploadProps = {
     name: "file",
     multiple: true,
@@ -36,12 +40,19 @@ function VideoUpload({ fileVideo, setFileVideo }: Props) {
 
   return (
     <>
-      {fileVideo ? (
-        <div className="w-1/2 mx-auto relative">
+      {fileVideo || runMode === "demo" ? (
+        <div className=" w-1/2 mx-auto relative">
           <video
-            src={fileVideo ? URL.createObjectURL(fileVideo) : ""}
+            src={
+              runMode === "demo"
+                ? "/video_input/IMG_1370.MOV"
+                : fileVideo
+                ? URL.createObjectURL(fileVideo as File)
+                : ""
+            }
+            // src={"/video_input/IMG_1370.MOV"}
             controls
-            className="w-full"
+            className="w-full max-h-[300px]"
           ></video>
           <div
             className=" absolute z-20 right-3 top-3 bg-black/50 w-[32px] h-[32px] flex items-center justify-center rounded-full hover:bg-black/80 transition-all cursor-pointer"
