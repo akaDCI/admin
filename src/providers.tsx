@@ -42,6 +42,9 @@ function Providers({
                 Select: {
                   controlHeight: 40,
                 },
+                Spin: {
+                  // dotSize: 120,
+                },
               },
               token: {
                 colorPrimary: themes.default.colors.primary,

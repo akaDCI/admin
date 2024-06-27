@@ -30,8 +30,8 @@ function ExperienceBefore() {
           width: "100%",
           height: "500px",
           margin: "0 auto",
-          background:
-            "radial-gradient(circle, rgba(149,149,149,1) 0%, rgba(24,24,24,1) 100%)",
+          // background:
+          //   "radial-gradient(circle, rgba(149,149,149,1) 0%, rgba(24,24,24,1) 100%)",
         }}
         camera={{ position: [1, 1, 1] }}
       >

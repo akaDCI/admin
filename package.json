@@ -19,7 +19,7 @@
     "@reduxjs/toolkit": "^2.2.4",
     "@types/three": "^0.165.0",
     "accept-language": "^3.0.18",
-    "antd": "^5.17.0",
+    "antd": "^5.18.3",
     "axios": "^1.6.8",
     "ckeditor": "^4.12.1",
     "clsx": "^2.1.1",

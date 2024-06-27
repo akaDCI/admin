@@ -19,8 +19,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("🚀 ~ !!!!:", process.env.EDGE_STORE_ACCESS_KEY);
-  console.log("🚀 ~ !!!!:", process.env.EDGE_STORE_SECRET_KEY);
   return (
     <html>
       <body className={inter.className} suppressHydrationWarning={true}>

@@ -205,15 +205,6 @@ function MuseumDetail() {
           },
         ]}
       />
-      {/* <Flex
-        gap={16}
-        style={{
-          marginBottom: 32,
-        }}
-      >
-        <ArrowLeftOutlined onClick={() => router.push("/museum-management")} />
-        <Typography.Title level={2}>Bảo tàng Đà Nẵng</Typography.Title>
-      </Flex> */}
       <Form layout="vertical" form={myForm}>
         <Typography.Title
           level={4}
@@ -304,7 +295,7 @@ function MuseumDetail() {
           ]}
           name="bannerUrl"
         >
-          <S.UploadWrap>
+          {/* <S.UploadWrap>
             <Upload.Dragger
               name="file"
               action="https://api.imgbb.com/1/upload?expiration=600&key=d0adfbcb1f973887c165948d50681492"
@@ -316,7 +307,7 @@ function MuseumDetail() {
             >
               <Button icon={<UploadOutlined />}>Tải Model 3D lên</Button>
             </Upload.Dragger>
-          </S.UploadWrap>
+          </S.UploadWrap> */}
         </Form.Item>
         <Typography.Title
           level={4}

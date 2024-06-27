@@ -40,16 +40,10 @@ function VideoUpload({ fileVideo, setFileVideo }: Props) {
 
   return (
     <>
-      {fileVideo || runMode === "demo" ? (
+      {fileVideo ? (
         <div className=" w-1/2 mx-auto relative">
           <video
-            src={
-              runMode === "demo"
-                ? "/video_input/IMG_1370.MOV"
-                : fileVideo
-                ? URL.createObjectURL(fileVideo as File)
-                : ""
-            }
+            src={fileVideo ? URL.createObjectURL(fileVideo as File) : ""}
             // src={"/video_input/IMG_1370.MOV"}
             controls
             className="w-full max-h-[300px]"

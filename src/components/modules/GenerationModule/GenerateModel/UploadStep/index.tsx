@@ -1,6 +1,6 @@
 "use client";
 
-import { Flex, Select, Typography } from "antd";
+import { Flex, Select, Spin, Typography } from "antd";
 import { useSearchParams } from "next/navigation";
 import _ from "lodash";
 import { useRouter } from "next-nprogress-bar";
@@ -10,6 +10,7 @@ import { createQueryString } from "@/utils/queryString";
 
 import Button from "@/components/core/common/Button";
 import { FileState } from "@/components/core/common/upload/multi-image";
+
 import ImageUpload from "./ImageUpload";
 import VideoUpload from "./VideoUpload";
 
@@ -30,8 +31,8 @@ function UploadStep() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      router.push(createQueryString("currentStep", `${currentStep + 1 ?? ""}`));
-    }, 5000);
+      router.push(createQueryString("currentStep", `${4 ?? ""}`));
+    }, 10000);
   }, 300);
 
   const handleBack = _.debounce(() => {
@@ -81,6 +82,12 @@ function UploadStep() {
           Tiếp tục
         </Button>
       </Flex>
+      <Spin
+        spinning={isLoading}
+        fullscreen
+        tip="Đang xử lý, vui lòng đợi trong giây lát..."
+        size="large"
+      />
     </div>
   );
 }
