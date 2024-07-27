@@ -575,6 +575,7 @@ function ClusterTab() {
         datasets: data?.data?.datasets,
       };
     },
+    skip: fake,
   });
 
   const { bot_answer = "" } = useReportClusterQuery(undefined, {
