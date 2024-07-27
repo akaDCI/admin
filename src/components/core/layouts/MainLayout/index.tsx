@@ -152,7 +152,7 @@ const MainLayout = ({
             </S.HeaderCustom>
             <S.ContentCustom>{children}</S.ContentCustom>
             <S.FooterCustom>
-              <p>Hế lô ae ban chủ nhiệm, quản lý CLB zui zẻ nha ae</p>
+              <p>FPT Hackathon 2024</p>
             </S.FooterCustom>
           </S.LayoutCustom>
         </Layout>
