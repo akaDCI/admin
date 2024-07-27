@@ -2,13 +2,20 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { baseApi } from "./queries/base";
 import { authAPI } from "./queries/auth";
-import { rtkQueryErrorLogger } from "./midleware";
 import auth from "./slices/auth";
+import { clusterApi } from "./queries/cluster";
 
 export const store = configureStore({
-  reducer: { [authAPI.reducerPath]: authAPI.reducer, auth },
+  reducer: {
+    [authAPI.reducerPath]: authAPI.reducer,
+    [clusterApi.reducerPath]: clusterApi.reducer,
+    auth,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
+    getDefaultMiddleware()
+      .concat(baseApi.middleware)
+      .concat(authAPI.middleware)
+      .concat(clusterApi.middleware),
   // .concat(rtkQueryErrorLogger),
 });
 

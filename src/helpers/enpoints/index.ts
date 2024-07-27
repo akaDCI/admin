@@ -68,6 +68,15 @@ const endpointAlbumManagement = {
   UPLOAD_IMAGES_FOR_ALBUM: `${prefixBase}/album/{slug}`,
 };
 
+const endpointStatics = {
+  ADD_LOGGING: `/api/api/add_logging`,
+  STATIS_OBJECT_DISTRIBUTION: `/api/api/statis_object_distribution`,
+  STATIS_HOURLY_DISTRIBUTION: `/api/api/statis_hourly_distribution`,
+  STATIS_AGE_DISTRIBUTION: `/api/api/statis_age_distribution`,
+  CLUSTER: `/api/cluster_vis`,
+  CLUSTER_REPORT: `/api/cluster_report`,
+};
+
 const endpointOther = {};
 
 export {
@@ -81,4 +90,5 @@ export {
   endpointSocialManagement,
   endpointImageActivityManagement,
   endpointProjectManagement,
+  endpointStatics,
 };

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { MenuFoldOutlined } from "@ant-design/icons";
 import { Flex, Layout, Menu, Popover, message } from "antd";
 import { AppProgressBar, useRouter } from "next-nprogress-bar";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import DropdownMenu from "./DropdownMenu";
 import Typography from "../../common/Typography";
@@ -66,6 +66,14 @@ const MainLayout = ({
     link: `/${item.key}`,
   }));
 
+  const searchParams = useSearchParams();
+
+  const logo = searchParams.get("logo") || "on";
+
+  const handleChangeLogo = () => {
+    router.push(`?logo=${logo !== "on" ? "on" : "off"}`);
+  };
+
   return (
     <>
       {!isAuth ? (
@@ -73,7 +81,7 @@ const MainLayout = ({
       ) : (
         <Layout hasSider>
           <S.SiderCustom trigger={null} collapsible collapsed={collapsed}>
-            <S.LogoWrapper onClick={() => router?.push(`/`)}>
+            <S.LogoWrapper onClick={handleChangeLogo}>
               <div className="demo-logo-vertical">
                 <Flex align="center" justify="space-between">
                   <Flex align="center" gap={12}>

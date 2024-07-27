@@ -11,6 +11,9 @@ const baseQuery = fetchBaseQuery({
       headers.set("Authorization", `Bearer ${accessToken}`);
     }
 
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
+
     return headers;
   },
 });
